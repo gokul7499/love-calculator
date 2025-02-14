@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Love Calculator</title>
+    <style>
+        body {
+            background: #b30000;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container, .prank-page, .data-page {
+            margin-top: 50px;
+            padding: 120px;
+            background: #800000;
+            width: 50%;
+            margin: auto;
+            border-radius: 10px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background: #4d0000;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .prank-page, .data-page {
+            display: none;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            background: white;
+            color: black;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainPage">
+        <h2>Real Love Calculator</h2>
+        <img src="C:\Users\Gokul\OneDrive\Desktop\Love calculator\hearts.png" alt="Love Image" width="150">
+        <br/>
+        <br/>
+        <label>Name</label>
+        <br/>
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <br/>
+        <label>Your Love/Crush</label>
+        <input type="text" id="love" placeholder="Enter Your Love's Name">
+        <br>
+        <button onclick="calculateLove()">❤ Calculate ❤</button>
+    </div>
+    
+    <div class="prank-page" id="prankPage">
+        <h2>You have been fooled by Mee</h2>
+        <p>Your name as well as name of your love has been sent to Mee</p>
+        <img src="https://lovecalculator.site/images/prank.gif" alt="Prank Image" width="150">
+        <br/>
+          
+        <p>Register NOW to play the same prank on your friends.</p>
+        <button class="btn btn-success" onclick="registerNow()">Register NOW</button>
+        
+        <hr>
+
+        <h3>How it works?</h3>
+        <div class="steps">
+            <p><span class="step">Step 1</span> Register & Share your link.</p>
+            <p><span class="step">Step 2</span> Check your Friend's Secret Crush on your Secret link.</p>
+        </div>
+
+      <a href="register.html">  <button class="btn btn-success mt-3" onclick="registerNow()">Register NOW</button></a>
+
+        <footer class="mt-4">
+            <p><a href="#" onclick="contact()">Contact Me</a></p>
+        </footer>
+        <br/>
+        <button onclick="showDataPage()">View Saved Data</button>
+    </div>
+    
+    <div class="data-page" id="dataPage">
+        <h2>Saved Data</h2>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="checkPassword()">Show Data</button>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Love/Crush</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <script>
+        function calculateLove() {
+            let name = document.getElementById("name").value;
+            let love = document.getElementById("love").value;
+            if (name === "" || love === "") {
+                alert("Please enter both names");
+                return;
+            }
+            function registerNow() {
+                alert("You have been fooled! But now you can prank your friends too.");
+                window.location.href = "register.html"; // Corrected the spelling
+            }
+            function contact() {
+                
+                window.location.href = "Contact.html"; // Corrected the spelling
+            }
+            let savedData = JSON.parse(localStorage.getItem("loveData")) || [];
+            savedData.push({ name, love });
+            localStorage.setItem("loveData", JSON.stringify(savedData));
+            document.getElementById("mainPage").style.display = "none";
+            document.getElementById("prankPage").style.display = "block";
+        }
+        
+        function showDataPage() {
+            document.getElementById("prankPage").style.display = "none";
+            document.getElementById("dataPage").style.display = "block";
+        }
+        
+        function checkPassword() {
+            let password = document.getElementById("password").value;
+            if (password !== "7499") {
+                alert("Incorrect password!");
+                return;
+            }
+            let savedData = JSON.parse(localStorage.getItem("loveData")) || [];
+            let tableBody = document.querySelector("#dataTable tbody");
+            tableBody.innerHTML = "";
+            savedData.forEach(entry => {
+                let row = `<tr><td>${entry.name}</td><td>${entry.love}</td></tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>

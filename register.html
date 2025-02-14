@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator Prank</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #a10042, #d50050);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .prank-img {
+            width: 180px;
+            margin: 20px 0;
+        }
+
+        .container-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            color: black;
+            display: inline-block;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            background: #ffafc4;
+            font-size: 16px;
+            text-align: left;
+            color: black;
+        }
+
+        .register-btn {
+            width: 100%;
+            background: #540000;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            background: #800000;
+        }
+
+        footer {
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h2 class="mt-4">Love Calculator Prank</h2>
+        <p>Find Secret Lover of your Friends using this Fake Love Calculator.</p>
+
+        <img src="C:\Users\Gokul\OneDrive\Desktop\Love calculator\hearts.png" alt="Love Calculator Image" class="prank-img">
+
+        <p>Register & Share your link.<br>Check your Friend's Secret Crush on your Secret link.</p>
+
+        <div class="container-box">
+            <select class="input-box">
+                <option>English</option>
+                <option>हिन्दी</option>
+                <option>Español</option>
+                <option>Français</option>
+            </select>
+
+            <input type="text" class="input-box" id="nameInput" placeholder="Enter Your Name">
+
+            <button class="register-btn" onclick="registerNow()">♥ Register ♥</button>
+        </div>
+
+        <footer class="mt-4">
+            <p><a href="#" onclick="contact()">Contact Me</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function registerNow() {
+            let name = document.getElementById("nameInput").value.trim();
+            if (name === "") {
+                alert("Please enter your name!");
+                return;
+            }
+            // Redirect to share.html with username as query parameter
+            window.location.href = "share.html?name=" + encodeURIComponent(name);
+        }
+
+        function contact(){
+            window.location.href = "Contact.html";
+        }
+    </script>
+</body>
+</html>
